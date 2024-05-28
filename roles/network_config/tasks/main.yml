@@ -1,0 +1,14 @@
+- name: Apply network configuration template
+  template:
+    src: config.j2
+    dest: /tmp/config.txt
+
+- name: Configure device
+  raw: |
+    configure terminal
+    {% for line in config_lines %}
+    {{ line }}
+    {% endfor %}
+    end
+  vars:
+    config_lines: "{{ lookup('file', '/tmp/config.txt').split('\n') }}"

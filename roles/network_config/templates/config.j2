@@ -1,0 +1,6 @@
+hostname {{ inventory_hostname }}
+
+interface GigabitEthernet0/0
+ description Configured by Ansible
+ ip address 192.168.100.1 255.255.255.0
+ no shutdown
